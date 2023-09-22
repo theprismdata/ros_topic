@@ -7,18 +7,6 @@ import os
 import signal
 import json
 
-#move moment tracking position
-def callback_odom(data):
-    print(data)
-
-def callback_tf_scan(data):
-    transform = data.transforms[0].transform
-    
-    trans_x = transform.translation.x
-    trans_y = transform.translation.y
-    trans_z = transform.translation.z
-    print('x:{tx}, y:{ty} , z:{tz}'.format(tx=trans_x, ty=trans_y, tz=trans_z))
-
 def callback_map_scan(map_data):
     """
     map_info = data.info
@@ -53,10 +41,6 @@ def callback_map_scan(map_data):
 
 def listener():
     rospy.init_node('jetson_msg', anonymous=True)
-    
-    # rospy.Subscriber("odom", Odometry, callback_odom)
-    # rospy.Subscriber("scan", LaserScan, callback_scan)
-    # rospy.Subscriber("tf", TFMessage, callback_tf_scan)
     rospy.Subscriber("map", OccupancyGrid, callback_map_scan)
     
     rospy.spin()

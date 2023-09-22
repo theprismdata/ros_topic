@@ -9,11 +9,6 @@ import json
 
 transform_list=[]
 
-
-#move moment tracking position
-def callback_odom(data):
-    print(data)
-
 def callback_tf_scan(data):
     transform_data = data.transforms[0]
     
@@ -88,9 +83,6 @@ def callback_tf_scan(data):
 
 def listener():
     rospy.init_node('turtle_msg_debug', anonymous=True)
-    
-    # rospy.Subscriber("odom", Odometry, callback_odom)
-    # rospy.Subscriber("scan", LaserScan, callback_scan)
     rospy.Subscriber("tf", TFMessage, callback_tf_scan)
     
     rospy.spin()

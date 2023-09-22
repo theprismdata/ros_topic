@@ -6,12 +6,24 @@ from tf2_msgs.msg import TFMessage
 import pickle
 import os
 import signal
+
 scan_list = []
 
 
 def callback_scan(data):
-    print(data.ranges)
-    print(data.intensities)
+    print(len(data.ranges), data.ranges[100:110])
+    #print(data.intensities)
+    scan_m = data
+    
+    scan_range_list = list(scan_m.ranges)
+    for si , v in enumerate(scan_range_list):
+        scan_range_list[si] = v+1
+    scan_m.ranges = tuple(scan_range_list)
+    
+    scan_m.intensities = scan_m.intensities
+    pub = rospy.Publisher('scan_m', LaserScan)
+    pub.publish(scan_m)
+    print(scan_m.ranges[100:110])
     """
     scan_list.append(data)
     if len(scan_list) == 100:

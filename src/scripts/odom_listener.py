@@ -34,10 +34,6 @@ def listener():
     rospy.init_node('turtle_msg_debug', anonymous=True)
     
     rospy.Subscriber("odom", Odometry, callback_odom)
-
-    # rospy.Subscriber("scan", LaserScan, callback_scan)
-    #rospy.Subscriber("tf", TFMessage, callback_tf_scan)
-    
     rospy.spin()
 
 if __name__ == '__main__':
