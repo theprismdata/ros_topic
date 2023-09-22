@@ -1,0 +1,4 @@
+<launch>
+ <!--<node pkg="jetracer_msg_desc" type="tf_listener.py" name="tf_listener" output="screen"/>-->
+  <node pkg="ros_topic" type="map_listener.py" name="map_listener" output="screen"/>
+</launch>
