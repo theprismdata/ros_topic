@@ -24,12 +24,16 @@ def callback_map_scan(map_data):
     ori_y = orientation.y
     ori_z = orientation.z
     data = map_data.data
-    # map_dict = {'info':{'position':{'pos_x':pos_x,'pos_y':pos_y,'pos_z':pos_z},
-    #                     'orientation': {'ori_x':ori_x,'ori_y':ori_y, 'ori_z':ori_z}},
-    #             'data':data}
     map_dict = {'info':{'position':{'pos_x':pos_x,'pos_y':pos_y,'pos_z':pos_z},
-                        'orientation': {'ori_x':ori_x,'ori_y':ori_y, 'ori_z':ori_z}}}
+                        'orientation': {'ori_x':ori_x,'ori_y':ori_y, 'ori_z':ori_z}},
+                'data':data}
     print(map_dict)
+    print('----')
+    map_jaon = json.dumps(map_dict)
+    
+    with open('map.json','w') as f:
+        json.dump(map_dict, f)
+    os.kill(os.getpid(), signal.SIGKILL)
    
 
 def listener():
